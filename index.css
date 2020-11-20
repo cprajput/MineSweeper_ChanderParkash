@@ -1,0 +1,65 @@
+body {
+  height: 100vh;
+  width: 100vw;
+}
+.container-fluid,
+.row {
+  height: 100%;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.header {
+  height: 10%;
+  width: 100%;
+  margin: 0 !important;
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  background: #232323;
+  font-size: 48px;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #49ff18,
+    0 0 30px #49ff18, 0 0 40px #49ff18, 0 0 55px #49ff18, 0 0 75px #49ff18;
+}
+#grid {
+  margin: auto !important;
+}
+.rows {
+  display: flex;
+}
+.col {
+  height: 50px;
+  width: 50px !important;
+  border-radius: 0px;
+
+  background: #b7b7b7;
+  box-shadow: 2px 2px 4px #494949, -2px -2px 4px #ffffff;
+  margin: 2px;
+}
+
+.hide {
+  display: none !important;
+}
+.button {
+  height: 10%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.red {
+  background-image: url("bomb.png");
+  background-size: cover;
+}
+.green {
+  background: #b7b7b7;
+  box-shadow: inset 2px 2px 4px #494949, -2px -2px 4px #ffffff;
+}
+.rightclick {
+  background-image: url("flag.jpg");
+  background-size: cover;
+}
+.disScore {
+  font-size: 48px;
+  color: green;
+  font-weight: bold;
+  margin: auto;
+}
