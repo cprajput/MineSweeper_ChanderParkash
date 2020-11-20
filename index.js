@@ -1,12 +1,13 @@
 let arr = [];
-let gridrow = 5;
-let gridcol = 6;
+
+let gridrow = 9;
+let gridcol = 9;
 let totalcol = gridcol * gridrow;
 let score = 0;
 let clickcount = 0;
 let gameOver = false;
 let nearby = [];
-let noOfRandomBombs = 7;
+let noOfRandomBombs = 10;
 document.getElementById("score").innerHTML = "Score : " + score;
 
 const generateRandomArray = () => {
