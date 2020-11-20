@@ -1,23 +1,24 @@
 let arr = [];
-let gridrow = 9;
-let gridcol = 9;
-let totalcol = 81;
+let gridrow = 5;
+let gridcol = 6;
+let totalcol = gridcol * gridrow;
 let score = 0;
 let clickcount = 0;
 let gameOver = false;
 let nearby = [];
-let noOfRandomBombs = 10;
+let noOfRandomBombs = 7;
 document.getElementById("score").innerHTML = "Score : " + score;
 
 const generateRandomArray = () => {
   for (let i = 0; i < noOfRandomBombs; i++) {
     while (arr[i] === undefined) {
-      let random = parseInt(Math.random() * 81);
+      let random = parseInt(Math.random() * totalcol);
       if (!arr.includes(random)) {
         arr[i] = random;
       }
     }
   }
+  console.log(arr);
 };
 generateRandomArray();
 
@@ -25,26 +26,56 @@ generateRandomArray();
 const calculateBomb = (id) => {
   let noOfBombs = 0;
 
-  let top = [1, 2, 3, 4, 5, 6, 7];
-  let bottom = [72, 73, 74, 75, 76, 77, 78, 78];
-  if (id % gridrow === 0) {
-    nearby = [id - 9, id - 8, +id + 1, +id + 9, +id + 10];
-  } else if (id % gridrow === 8) {
-    nearby = [id - 9, id - 10, id - 1, +id + 9, +id + 8];
+  let top = [];
+  for (let i = 1; i < gridcol - 2; i++) {
+    top.push(i);
+  }
+  let bottom = [];
+  for (let i = totalcol - gridcol; i < totalcol - 2; i++) {
+    bottom.push(i);
+  }
+  if (id % gridcol === 0) {
+    nearby = [
+      id - gridcol,
+      id - gridcol + 1,
+      +id + 1,
+      +id + gridcol,
+      +id + gridcol + 1
+    ];
+  } else if (id % gridcol === 8) {
+    nearby = [
+      id - gridcol,
+      id - gridcol - 1,
+      id - 1,
+      +id + gridcol,
+      +id + gridcol - 1
+    ];
   } else if (top.includes(id)) {
-    nearby = [id - 1, +id + 1, +id + 8, +id + 9, +id + 10];
+    nearby = [
+      id - 1,
+      +id + 1,
+      +id + gridcol - 1,
+      +id + gridcol,
+      +id + gridcol + 1
+    ];
   } else if (bottom.includes(id)) {
-    nearby = [id - 1, id - 8, id - 9, id - 10, +id + 1];
+    nearby = [
+      id - 1,
+      id - gridcol + 1,
+      id - gridcol,
+      id - gridcol - 1,
+      +id + 1
+    ];
   } else {
     nearby = [
       id - 1,
-      id - 8,
-      id - 9,
-      id - 10,
+      id - gridcol + 1,
+      id - gridcol,
+      id - gridcol - 1,
       +id + 1,
-      +id + 8,
-      +id + 9,
-      +id + 10
+      +id + gridcol - 1,
+      +id + gridcol,
+      +id + gridcol + 1
     ];
   }
   let length = nearby.length;
@@ -53,7 +84,8 @@ const calculateBomb = (id) => {
       noOfBombs++;
     }
   }
-
+  console.log(nearby);
+  console.log(noOfBombs);
   return noOfBombs;
 };
 /* ******bombcalculate end****/
